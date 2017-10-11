@@ -9,20 +9,19 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'gs-spring-boot'
-    version =  '0.1.0'
-}
-
-repositories {
-    mavenCentral()
+    baseName = 'test-gradle-api'
+    version =  '0.0.1-SNAPSHOT'
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
@@ -31,17 +30,4 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty")
     
     compile group: 'com.linecorp.bot', name: 'line-bot-spring-boot', version: '1.10.0'
-}
-
-task stage(type: Copy, dependsOn: [clean, build]) {
-    from jar.archivePath
-    into project.rootDir 
-    rename {
-        'app.jar'
-    }
-}
-stage.mustRunAfter(clean)
-
-clean << {
-    project.file('app.jar').delete()
 }
