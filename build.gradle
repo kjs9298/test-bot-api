@@ -37,3 +37,7 @@ defaultTasks "clean", "build"
 task wrapper(type: Wrapper) {
   gradleVersion = '2.4'
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
